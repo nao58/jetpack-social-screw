@@ -5,7 +5,6 @@
       var d = $(ss.doc);
       ss.showHatena(d, url);
       ss.showLivedoor(d, url);
-//      ss.showFriendFeed(d, url);
     },
     createComments: function(arr){
       var html = '<ul>';
@@ -67,27 +66,6 @@
           });
         }
       });
-    },
-    showFriendFeed: function(d, url){
-      $.ajax({
-        type: 'get',
-        dataType: 'json',
-        url: 'http://friendfeed.com/api/feed/url',
-        data: {
-          url: url
-        },
-        success: function(msg){
-          var html = '<div>'+msg.entries.length+'</div>';
-          for(var i=0; i<msg.entries.length; ++i){
-            var e = msg.entries[i];
-            var s = e.service;
-            if(s){
-              html += '<div><img src="'+s.iconUrl+'" />'+s.name+'</div>';
-            }
-          }
-          d.find('#show-friendfeed').html(html);
-        }
-      });
     }
   }
   jetpack.tabs.onFocus(function(){
@@ -131,7 +109,6 @@
       <div id="container">
         <div class="block" id="show-hatena"> </div>
         <div class="block" id="show-livedoor"> </div>
-        <div class="block" id="show-friendfeed"> </div>
       </div>
     </>
   });
